@@ -1,0 +1,59 @@
+{
+  "planHash": "38ef6d05abd217ad4d73a149b1cb0e10a83e9ec3870d383ffcd4709b1ae92794",
+  "phase": "postupgrade",
+  "recordedAtUtc": "2026-09-01T20:29:59.2513983Z",
+  "retryCount": 0,
+  "resetBaseline": false,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 2586,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "tsc-no-emit",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "",
+        "durationMs": 1789
+      },
+      {
+        "name": "dev-server-serves-home",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 200\n\u003C!doctype html\u003E\r\n\u003Chtml lang=\u0022en\u0022\u003E\r\n  \u003Chead\u003E\n    \u003Cscript type=\u0022module\u0022\u003Eimport { injectIntoGlobalHook } from \u0022/@react-refresh\u0022;\ninjectIntoGlobalHook(window);\nwindow.$RefreshReg$ = () =\u003E {};\nwindow.$RefreshSig$ = () =\u003E (type) =\u003E type;\u003C/script\u003E\n\n    \u003Cscript type=\u0022module\u0022 src=\u0022/@vite/client\u0022\u003E\u003C/script\u003E\n\r\n    \u003Cmeta charset=\u0022UTF-8\u0022 /\u003E\r\n    \u003Cmeta name=\u0022viewport\u0022 content=\u0022width=device-width, initial-scale=1.0\u0022 /\u003E\r\n    \u003Ctitle\u003ECZR STORE\u003C/title\u003E\r\n  \u003C/head\u003E\r\n  \u003Cbody\u003E\r\n    \u003Cdiv id=\u0022root\u0022\u003E\u003C/div\u003E\r\n    \u003Cscript type=\u0022module\u0022 src=\u0022/src/main.jsx\u0022\u003E\u003C/script\u003E\r\n  \u003C/body\u003E\r\n\u003C/html\u003E\r\n",
+        "durationMs": 21
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": false,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 1,
+        "outputSample": "\r\n\u003E app@0.0.0 test\r\n\u003E vitest run\r\n\r\n\r\n\u001B[1m\u001B[30m\u001B[46m RUN \u001B[49m\u001B[39m\u001B[22m \u001B[36mv4.1.11 \u001B[39m\u001B[90mc:/Users/Amanda Cezario/OneDrive/Documentos/CZR STORE/APP\u001B[39m\r\n\r\n \u001B[31m\u276F\u001B[39m src/App.test.jsx \u001B[2m(\u001B[22m\u001B[2m0 test\u001B[22m\u001B[2m)\u001B[22m\r\n\r\n\u001B[31m\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u001B[39m\u001B[1m\u001B[41m Failed Suites 1 \u001B[49m\u001B[22m\u001B[31m\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u001B[39m\r\n\r\n\u001B[41m\u001B[1m FAIL \u001B[22m\u001B[49m src/App.test.jsx\u001B[2m [ src/App.test.jsx ]\u001B[22m\r\n\u001B[31m\u001B[1mTypeError\u001B[22m: Cannot read properties of undefined (reading \u0027config\u0027)\u001B[39m\r\n\u001B[90m \u001B[2m\u276F\u001B[22m src/App.test.jsx:\u001B[2m5:1\u001B[22m\u001B[39m\r\n\r\n\u001B[31m\u001B[2m\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF\u23AF[1/1]\u23AF\u001B[22m\u001B[39m\r\n\r\n\r\n\u001B[2m Test Files \u001B[22m \u001B[1m\u001B[31m1 failed\u001B[39m\u001B[22m\u001B[90m (1)\u001B[39m\r\n\u001B[2m      Tests \u001B[22m \u001B[2mno tests\u001B[22m\r\n\u001B[2m   Start at \u001B[22m 17:29:56\r\n\u001B[2m   Duration \u001B[22m 2.42s\u001B[2m (transform 107ms, setup 357ms, import 0ms, tests 0ms, environment 1.48s)\u001B[22m\r\n\r\n",
+        "durationMs": 3770,
+        "testResults": {
+          "testFramework": "vitest",
+          "runnerDetectedFrom": "package_json",
+          "testsTotal": 0,
+          "testsPassed": 0,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": true
+        }
+      }
+    ]
+  }
+}

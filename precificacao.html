@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> CZR STORE — calculadora</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="calc">
+<div class="app">
+  <header>
+    <div class="header-top">
+      <p class="eyebrow">CALCULADORA DE precificacaoÇÃO</p>
+      <button id="btnLogout" class="btn-logout" type="button">Sair</button>
+    </div>
+    <h1>Quanto<br><span>cobrar</span> por isso?</h1>
+    <p class="sub">Entra com o que você pagou, soma os custos extras e sai o preço certo pra vender.</p>
+    <p id="usuarioLogado" class="usuario-logado"></p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="calc">Calcular</button>
+    <button class="tab" data-tab="historico">Histórico</button>
+  </div>
+
+  <main>
+    <!-- CALCULAR -->
+    <section id="tab-calc" class="active">
+
+      <div class="grupo">
+        <p class="grupo-titulo"><span class="num">1</span> O produto</p>
+        <div class="campo">
+          <label for="nome">Nome da mercadoria</label>
+          <div class="input-wrap">
+            <input id="nome" type="text" placeholder="Ex: coleira ajustável P">
+          </div>
+        </div>
+        <div class="campo">
+          <label for="custo">Preço de compra (unidade)</label>
+          <div class="input-wrap">
+            <span class="prefixo">R$</span>
+            <input id="custo" type="number" inputmode="decimal" placeholder="0,00">
+          </div>
+        </div>
+      </div>
+
+      <div class="grupo">
+        <p class="grupo-titulo"><span class="num">2</span> Custos extras (opcional)</p>
+        <div class="campo-linha">
+          <div class="campo">
+            <label for="frete">Frete/embalagem (unidade)</label>
+            <div class="input-wrap">
+              <span class="prefixo">R$</span>
+              <input id="frete" type="number" inputmode="decimal" placeholder="0,00">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="taxaCartao">Taxa cartão/plataforma</label>
+            <div class="input-wrap">
+              <input id="taxaCartao" type="number" inputmode="decimal" placeholder="0">
+              <span class="prefixo">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="imposto">Imposto MEI/DAS sobre a venda</label>
+          <div class="input-wrap">
+            <input id="imposto" type="number" inputmode="decimal" placeholder="0">
+            <span class="prefixo">%</span>
+          </div>
+          <p class="hint">Se você já recolhe o DAS fixo mensal e não quer diluir por produto, deixe em 0.</p>
+        </div>
+      </div>
+
+      <div class="grupo">
+        <p class="grupo-titulo"><span class="num">3</span> Sua margem</p>
+        <div class="margem-toggle">
+          <button data-margem="30" class="margem-btn">30%</button>
+          <button data-margem="50" class="margem-btn active">50%</button>
+          <button data-margem="80" class="margem-btn">80%</button>
+          <button data-margem="100" class="margem-btn">100%</button>
+        </div>
+        <div class="campo">
+          <label for="margem">Ou digite a margem de lucro desejada</label>
+          <div class="input-wrap">
+            <input id="margem" type="number" inputmode="decimal" value="50">
+            <span class="prefixo">%</span>
+          </div>
+          <p class="hint">Margem sobre o preço final de venda (não sobre o custo).</p>
+        </div>
+      </div>
+
+      <div class="resultado">
+        <p class="label">PREÇO FINAL DE VENDA</p>
+        <p class="valor" id="valorFinal">R$ 0,00</p>
+        <div class="linha-extra">
+          <div>
+            <span>Custo total</span>
+            <span class="valor-mini" id="custoTotalMini">R$ 0,00</span>
+          </div>
+          <div>
+            <span>Lucro por unidade</span>
+            <span class="valor-mini" id="lucroMini">R$ 0,00</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-salvar" id="btnSalvar">Salvar no histórico</button>
+      <p class="msg-salvo" id="msgSalvo"></p>
+    </section>
+
+    <!-- HISTÓRICO -->
+    <section id="tab-historico">
+      <div class="resumo-hist" id="resumoHist" style="display:none">
+        <div class="card">
+          <p class="rot">Itens salvos</p>
+          <p class="num" id="totalItens">0</p>
+        </div>
+        <div class="card">
+          <p class="rot">Lucro total previsto</p>
+          <p class="num" id="totalLucro">R$ 0</p>
+        </div>
+      </div>
+      <div id="listaHistorico"></div>
+    </section>
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

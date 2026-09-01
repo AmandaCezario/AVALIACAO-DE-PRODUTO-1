@@ -1,0 +1,59 @@
+{
+  "planHash": "38ef6d05abd217ad4d73a149b1cb0e10a83e9ec3870d383ffcd4709b1ae92794",
+  "phase": "baseline",
+  "recordedAtUtc": "2026-09-01T20:25:56.6938482Z",
+  "retryCount": 0,
+  "resetBaseline": false,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 2502,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "tsc-no-emit",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": false,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 1,
+        "outputSample": "npm warn exec The following package was not found and will be installed: tsc@2.0.4\r\nnpm warn deprecated tsc@2.0.4: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.\r\n\r\n\u001B[41m                                                                               \u001B[0m\r\n\u001B[41m\u001B[37m                This is not the tsc command you are looking for                \u001B[0m\r\n\u001B[41m                                                                               \u001B[0m\r\n\r\nTo get access to the TypeScript compiler, \u001B[34mtsc\u001B[0m, from the command line either:\r\n\r\n- Use \u001B[1mnpm install typescript\u001B[0m to first add TypeScript to your project \u001B[1mbefore\u001B[0m using npx\r\n- Use \u001B[1myarn\u001B[0m to avoid accidentally running code from un-installed packages\r\n",
+        "durationMs": 3303
+      },
+      {
+        "name": "dev-server-serves-home",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": false,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 404\n",
+        "durationMs": 16
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": false,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 1,
+        "outputSample": "\r\n\u003E app@0.0.0 test\r\n\u003E vitest run\r\n\r\n\r\n\u001B[1m\u001B[30m\u001B[46m RUN \u001B[49m\u001B[39m\u001B[22m \u001B[36mv4.1.11 \u001B[39m\u001B[90mc:/Users/Amanda Cezario/OneDrive/Documentos/CZR STORE/APP\u001B[39m\r\n\r\n\u001B[31mNo test files found, exiting with code 1\r\n\u001B[39m\r\n\u001B[2minclude: \u001B[22m\u001B[33m**/*.{test,spec}.?(c|m)[jt]s?(x)\u001B[39m\r\n\u001B[2mexclude:  \u001B[22m\u001B[33m**/node_modules/**\u001B[2m, \u001B[22m**/.git/**\u001B[39m\r\n\r\n",
+        "durationMs": 3699,
+        "testResults": {
+          "testFramework": "vitest",
+          "runnerDetectedFrom": "package_json",
+          "testsTotal": 0,
+          "testsPassed": 0,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": true
+        }
+      }
+    ]
+  }
+}
