@@ -16,6 +16,13 @@ function getHistoryKey(user = getCurrentUser()) {
   return `${STORAGE_KEYS.historyPrefix}${user || 'guest'}`;
 }
 
+function mostrarErro(mensagem) {
+  const msgErro = document.getElementById('msgErro');
+  if (msgErro) {
+    msgErro.textContent = mensagem;
+  }
+}
+
 async function storageGet(key) {
   try {
     if (window.storage && typeof window.storage.get === 'function') {
@@ -55,7 +62,6 @@ function formatMoney(value) {
 
 function bindLoginPage() {
   const loginForm = document.getElementById('loginForm');
-  const msgErro = document.getElementById('msgErro');
 
   if (!loginForm) return;
 
@@ -64,35 +70,29 @@ function bindLoginPage() {
     return;
   }
 
-  const usuario = document.getElementById('usuario')
-  const senha = document.getElementById('senha')
-  const form = document.getElementById('loginForm')
+  const usuario = document.getElementById('usuario');
+  const senha = document.getElementById('senha');
 
-  form.addEventListener('submit', async function (event) {
-    event.preventDefault()
+  loginForm.addEventListener('submit', function (event) {
+    event.preventDefault();
 
-    const user = usuario.value.trim()
-    const pass = senha.value.trim()
+    const user = usuario.value.trim().toLowerCase();
+    const pass = senha.value;
 
     if (!user || !pass) {
-      mostrarErro('Preencha usuário e senha.')
-      return
+      mostrarErro('Preencha usuário e senha.');
+      return;
     }
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: user,
-      password: pass
-    })
-
-    if (error) {
-      mostrarErro(error.message)
-      return
+    if (USERS[user] !== pass) {
+      mostrarErro('Usuário ou senha inválidos.');
+      return;
     }
 
     localStorage.setItem(STORAGE_KEYS.currentUser, user);
-    localStorage.setItem('usuarioLogado', user)
+    localStorage.setItem('usuarioLogado', user);
     window.location.href = 'precificacao.html';
-  })
+  });
 }
 
 function bindCalculatorPage() {
