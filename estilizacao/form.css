@@ -22,8 +22,6 @@
     color: #B9AFA8;
     margin-bottom: 6px;
   }
-  .campo-linha{ display:flex; gap:10px; }
-  .campo-linha .campo{ flex:1; }
 
   .input-wrap{
     display:flex;
@@ -31,7 +29,7 @@
     background: var(--preto-suave);
     border: 2px solid #3A2F2A;
     border-radius: 10px;
-    padding: 0 14px;
+    padding: 0 3px;
     transition: border-color .15s ease;
   }
   .input-wrap:focus-within{ border-color: var(--vermelho); }
