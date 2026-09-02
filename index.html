@@ -1,12 +1,32 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CZR STORE</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CZR STORE - Login</title>
+  <link rel="stylesheet" href="estilizacao/form.css" />
+  <link rel="stylesheet" href="estilizacao/header.css" />
+  <link rel="stylesheet" href="estilizacao/historico.css" />
+  <link rel="stylesheet" href="estilizacao/janelas.css" />
+  <link rel="stylesheet" href="estilizacao/resultado.css" />
+  <link rel="stylesheet" href="estilizacao/style.css" />
+</head>
+<body data-page="login" class="login-page">
+  <div class="login-shell">
+    <div class="login-card">
+      <p class="eyebrow">ACESSO</p>
+      <h1>Entrar na conta</h1>
+      <p class="sub">Use seu usuario e senha para acessar o historico.</p>
+      <form id="loginForm" class="login-form">
+        <label for="usuario">Usuario</label>
+        <input id="usuario" type="text" placeholder="Digite seu usuario" autocomplete="username" />
+        <label for="senha">Senha</label>
+        <input id="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password" />
+        <button type="submit" class="btn-primary">Entrar</button>
+        <p id="msgErro" class="msg-erro" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="/script.js"></script>
+</body>
 </html>

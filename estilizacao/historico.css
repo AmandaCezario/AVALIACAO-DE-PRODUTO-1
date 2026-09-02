@@ -1,0 +1,50 @@
+/* ---------- HISTÓRICO ---------- */
+  .hist-item{
+    background: var(--preto-suave);
+    border-radius: 12px;
+    padding: 15px 16px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--vermelho);
+    position:relative;
+  }
+  .hist-item .nome{ font-weight:700; font-size: 15px; margin:0 0 8px; padding-right: 26px; }
+  .hist-item .linha{
+    display:flex;
+    justify-content:space-between;
+    font-size: 13px;
+    color:#B9AFA8;
+    margin-bottom:3px;
+  }
+  .hist-item .linha b{ color: var(--creme); font-weight:700; }
+  .hist-item .lucro{ color: #6FBF97 !important; }
+  .hist-item .apagar{
+    position:absolute;
+    top:14px; right:12px;
+    background:none; border:none;
+    color:#5C514B;
+    font-size:18px;
+    cursor:pointer;
+    line-height:1;
+    padding:4px;
+  }
+  .vazio{
+    text-align:center;
+    padding: 50px 20px;
+    color: #6B5F58;
+  }
+  .vazio .icone{ font-size: 34px; margin-bottom: 10px; }
+  .vazio p{ font-size: 14px; margin:0; }
+
+  .resumo-hist{
+    display:flex;
+    gap:10px;
+    margin-bottom: 18px;
+  }
+  .resumo-hist .card{
+    flex:1;
+    background: var(--preto-suave);
+    border-radius: 12px;
+    padding: 14px 12px;
+  }
+  .resumo-hist .card .rot{ font-size:11.5px; color:#8A7C74; margin:0 0 4px; }
+  .resumo-hist .card .num{ font-family:'Archivo Black',sans-serif; font-size:19px; color: var(--dourado); }

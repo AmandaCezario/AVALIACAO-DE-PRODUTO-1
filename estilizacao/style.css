@@ -1,0 +1,144 @@
+/* Removed stray HTML tags from the top of the CSS file. Keep only valid CSS. */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root{
+    --preto: #17110F;
+    --preto-suave: #2A211E;
+    --vermelho: #C81D3F;
+    --vermelho-escuro: #8F1330;
+    --creme: #F6EFE9;
+    --creme-linha: #E7DAD0;
+    --dourado: #C79A3B;
+    --verde-lucro: #2E6B4F;
+  }
+
+  *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+  html,body{ margin:0; padding:0; }
+
+  body{
+    background: var(--preto);
+    color: var(--creme);
+    font-family: 'Archivo', sans-serif;
+    min-height: 100vh;
+    display:flex;
+    justify-content:center;
+    padding: 0 0 60px;
+  }
+
+  .app{ width:100%; max-width: 460px; }
+
+  .login-page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding: 24px 16px 60px;
+  }
+
+  .login-shell{
+    width:100%;
+    max-width: 420px;
+  }
+
+  .login-card{
+    background: var(--preto-suave);
+    border: 2px solid #3A2F2A;
+    border-radius: 18px;
+    padding: 28px 22px;
+  }
+
+  .login-card h1{
+    font-size: 32px;
+    margin: 0 0 10px;
+  }
+
+  .login-form{
+    margin-top: 18px;
+  }
+
+  .login-form label{
+    display:block;
+    margin: 12px 0 8px;
+    color: #B9AFA8;
+    font-size: 13px;
+  }
+
+  .login-form input{
+    width:100%;
+    padding: 13px 14px;
+    border-radius: 10px;
+    border: 2px solid #3A2F2A;
+    background: var(--preto);
+    color: var(--creme);
+    font-size: 16px;
+    outline:none;
+  }
+
+  .login-form input:focus{
+    border-color: var(--vermelho);
+  }
+
+  .btn-primary,
+  .btn-logout{
+    font-family:'Archivo',sans-serif;
+    cursor:pointer;
+  }
+
+  .btn-primary{
+    width:100%;
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: none;
+    background: var(--vermelho);
+    color: var(--creme);
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .msg-erro{
+    min-height: 18px;
+    color: #ffb5c5;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  .login-help{
+    margin-top: 20px;
+    color: #B9AFA8;
+    font-size: 13px;
+  }
+
+  .login-help p,
+  .login-help ul{
+    margin: 0;
+  }
+
+  .login-help ul{
+    margin-top: 8px;
+    padding-left: 18px;
+  }
+
+  .header-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap: 12px;
+  }
+
+  .btn-logout{
+    border: 1px solid var(--dourado);
+    background: transparent;
+    color: var(--dourado);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .usuario-logado{
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--dourado);
+    font-weight: 700;
+  }
+

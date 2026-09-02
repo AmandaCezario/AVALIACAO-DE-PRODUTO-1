@@ -1,0 +1,28 @@
+/* ---------- TABS ---------- */
+  .tabs{
+    display:flex;
+    margin: 22px 22px 0;
+    border: 2px solid var(--preto-suave);
+    border-radius: 10px;
+    overflow:hidden;
+  }
+  .tab{
+    flex:1;
+    text-align:center;
+    padding: 12px 6px;
+    font-size: 14px;
+    font-weight: 700;
+    background: transparent;
+    color: #9C8E86;
+    border:none;
+    cursor:pointer;
+    font-family:'Archivo',sans-serif;
+  }
+  .tab.active{
+    background: var(--vermelho);
+    color: var(--creme);
+  }
+
+  main{ padding: 22px; }
+  section{ display:none; }
+  section.active{ display:block; }

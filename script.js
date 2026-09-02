@@ -1,6 +1,8 @@
+    //LOGIN//
+
 const STORAGE_KEYS = {
-  currentUser: 'precificacaocao:user',
-  historyPrefix: 'precificacaocao:historico:'
+  currentUser: 'index:user',
+  historyPrefix: 'index:historico:'
 };
 
 const USERS = {
@@ -66,7 +68,7 @@ function bindLoginPage() {
   if (!loginForm) return;
 
   if (getCurrentUser()) {
-    window.location.href = 'precificacao.html';
+    window.location.href = 'calculadora.html';
     return;
   }
 
@@ -91,14 +93,16 @@ function bindLoginPage() {
 
     localStorage.setItem(STORAGE_KEYS.currentUser, user);
     localStorage.setItem('usuarioLogado', user);
-    window.location.href = 'precificacao.html';
+    window.location.href = 'calculadora.html';
   });
 }
+
+ //PAGINA INICIAL CALCULADORA//
 
 function bindCalculatorPage() {
   const currentUser = getCurrentUser();
   if (!currentUser) {
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
     return;
   }
 
@@ -112,7 +116,7 @@ function bindCalculatorPage() {
     logoutBtn.addEventListener('click', () => {
       console.log('cliquei sair');
       localStorage.removeItem(STORAGE_KEYS.currentUser);
-      window.location.assign('login.html');
+      window.location.assign('index.html');
     });
   }
 
@@ -147,6 +151,8 @@ function bindCalculatorPage() {
     calcular();
   });
 
+
+  // Função para calcular o preço final, custo total e lucro//
   function calcular() {
     const custo = Number.parseFloat($('custo').value) || 0;
     const frete = Number.parseFloat($('frete').value) || 0;
@@ -217,6 +223,8 @@ function bindCalculatorPage() {
     }
   });
 
+  // Função para pegar a lista do histórico do usuário atual //
+
   async function pegarLista() {
     try {
       const raw = await storageGet(getHistoryKey(currentUser));
@@ -227,6 +235,8 @@ function bindCalculatorPage() {
     }
   }
 
+  // Função para carregar o histórico do usuário atual //
+  
   async function carregarHistorico() {
     const lista = await pegarLista();
     const container = $('listaHistorico');
