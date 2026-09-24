@@ -1,4 +1,4 @@
-# SISTEMA KAORI DE CONTROLE FINANCEIRO E PRECIFICACAO
+# SISTEMA DE CONTROLE FINANCEIRO E PRECIFICACAO
 
 Projeto desenvolvido para a disciplina **Projeto de Website - Back End**, no curso de Tecnologia em Analise e Desenvolvimento de Sistemas, 4o periodo.
 
