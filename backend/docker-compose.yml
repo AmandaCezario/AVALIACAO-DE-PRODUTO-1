@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: kaori-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: kaori_precificacao
+      MYSQL_ROOT_PASSWORD: kaori4212
+      MYSQL_USER: kaori
+      MYSQL_PASSWORD: kaori4212
+    ports:
+      - "3306:3306"
+    volumes:
+      - kaori-mysql-data:/var/lib/mysql
+
+volumes:
+  kaori-mysql-data:

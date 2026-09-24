@@ -120,6 +120,8 @@
     justify-content:space-between;
     align-items:center;
     gap: 12px;
+    position: relative;
+    z-index: 1;
   }
 
   .btn-logout{
@@ -130,6 +132,8 @@
     border-radius: 999px;
     font-size: 12px;
     font-weight: 700;
+    position: relative;
+    z-index: 2;
   }
 
   .usuario-logado{

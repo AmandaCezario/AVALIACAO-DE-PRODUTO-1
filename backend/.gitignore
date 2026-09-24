@@ -1,0 +1,13 @@
+target/
+.idea/
+*.iml
+.env
+.env.*
+!.env.example
+
+node_modules/
+dist/
+
+backend/target/
+**/application.yml
+**/application.properties

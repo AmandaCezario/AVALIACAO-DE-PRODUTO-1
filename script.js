@@ -5,12 +5,23 @@ const STORAGE_KEYS = {
   historyPrefix: 'index:historico:'
 };
 
+const API_BASE_URL = 'http://localhost:8080';
+
 const USERS = {
-  admin: '12420628',
+  admin: 'admin123',
   loja: 'czr4212'
 };
 
-function getCurrentUser() {
+export function normalizeUsername(value = '') {
+  return String(value).trim().toLowerCase();
+}
+
+export function buildBasicAuthHeader(username, password) {
+  const encoded = btoa(`${normalizeUsername(username)}:${String(password)}`);
+  return `Basic ${encoded}`;
+}
+
+export function getCurrentUser() {
   return localStorage.getItem(STORAGE_KEYS.currentUser) || '';
 }
 
@@ -62,6 +73,62 @@ function formatMoney(value) {
   });
 }
 
+export function calculateFinalPrice({
+  custo = 0,
+  frete = 0,
+  embalagem = 0,
+  taxaCartao = 0,
+  taxaPlataforma = 0,
+  imposto = 0,
+  margem = 0
+}) {
+  const custoBase = Number(custo) + Number(frete) + Number(embalagem);
+  const percentuaisSobreVenda = (Number(taxaCartao) + Number(taxaPlataforma) + Number(imposto) + Number(margem)) / 100;
+
+  let precoFinal = 0;
+  if (percentuaisSobreVenda < 1 && custoBase > 0) {
+    precoFinal = custoBase / (1 - percentuaisSobreVenda);
+  }
+
+  const custoTotal = custoBase
+    + precoFinal * (Number(taxaCartao) / 100)
+    + precoFinal * (Number(taxaPlataforma) / 100)
+    + precoFinal * (Number(imposto) / 100);
+
+  const lucro = precoFinal - custoTotal;
+
+  return {
+    custoBase,
+    precoFinal,
+    custoTotal,
+    lucro,
+    custo: Number(custo),
+    frete: Number(frete),
+    embalagem: Number(embalagem),
+    taxaCartao: Number(taxaCartao),
+    taxaPlataforma: Number(taxaPlataforma),
+    imposto: Number(imposto),
+    margem: Number(margem)
+  };
+}
+
+async function authenticateWithApi(username, password) {
+  const response = await fetch(`${API_BASE_URL}/api/usuarios`, {
+    method: 'GET',
+    headers: {
+      Authorization: buildBasicAuthHeader(username, password),
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors'
+  });
+
+  if (!response.ok) {
+    throw new Error('Credenciais inválidas.');
+  }
+
+  return response;
+}
+
 function bindLoginPage() {
   const loginForm = document.getElementById('loginForm');
 
@@ -75,10 +142,10 @@ function bindLoginPage() {
   const usuario = document.getElementById('usuario');
   const senha = document.getElementById('senha');
 
-  loginForm.addEventListener('submit', function (event) {
+  loginForm.addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    const user = usuario.value.trim().toLowerCase();
+    const user = normalizeUsername(usuario.value);
     const pass = senha.value;
 
     if (!user || !pass) {
@@ -86,14 +153,15 @@ function bindLoginPage() {
       return;
     }
 
-    if (USERS[user] !== pass) {
-      mostrarErro('Usuário ou senha inválidos.');
-      return;
+    try {
+      await authenticateWithApi(user, pass);
+      localStorage.setItem(STORAGE_KEYS.currentUser, user);
+      localStorage.setItem('usuarioLogado', user);
+      window.location.href = 'calculadora.html';
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Usuário ou senha inválidos.';
+      mostrarErro(message);
     }
-
-    localStorage.setItem(STORAGE_KEYS.currentUser, user);
-    localStorage.setItem('usuarioLogado', user);
-    window.location.href = 'calculadora.html';
   });
 }
 
@@ -156,31 +224,32 @@ function bindCalculatorPage() {
   function calcular() {
     const custo = Number.parseFloat($('custo').value) || 0;
     const frete = Number.parseFloat($('frete').value) || 0;
+    const embalagem = Number.parseFloat($('embalagem').value) || 0;
     const taxaCartao = Number.parseFloat($('taxaCartao').value) || 0;
+    const taxaPlataforma = Number.parseFloat($('taxaPlataforma').value) || 0;
     const imposto = Number.parseFloat($('imposto').value) || 0;
     const margem = Number.parseFloat($('margem').value) || 0;
 
-    const custoBase = custo + frete;
-    const percentuaisSobreVenda = (taxaCartao + imposto + margem) / 100;
+    const dados = calculateFinalPrice({
+      custo,
+      frete,
+      embalagem,
+      taxaCartao,
+      taxaPlataforma,
+      imposto,
+      margem
+    });
 
-    let precoFinal = 0;
-    if (percentuaisSobreVenda < 1 && custoBase > 0) {
-      precoFinal = custoBase / (1 - percentuaisSobreVenda);
-    }
+    $('valorFinal').textContent = formatMoney(dados.precoFinal);
+    $('custoTotalMini').textContent = formatMoney(dados.custoTotal);
+    $('lucroMini').textContent = formatMoney(dados.lucro);
 
-    const custoTotal = custoBase + precoFinal * (taxaCartao / 100) + precoFinal * (imposto / 100);
-    const lucro = precoFinal - custoTotal;
+    $('btnSalvar').disabled = !(custo > 0 && dados.precoFinal > 0);
 
-    $('valorFinal').textContent = formatMoney(precoFinal);
-    $('custoTotalMini').textContent = formatMoney(custoTotal);
-    $('lucroMini').textContent = formatMoney(lucro);
-
-    $('btnSalvar').disabled = !(custo > 0 && precoFinal > 0);
-
-    return { precoFinal, custoTotal, lucro, custo, frete, taxaCartao, imposto, margem };
+    return dados;
   }
 
-  ['custo', 'frete', 'taxaCartao', 'imposto'].forEach((id) => {
+  ['custo', 'frete', 'embalagem', 'taxaCartao', 'taxaPlataforma', 'imposto'].forEach((id) => {
     $(id).addEventListener('input', calcular);
   });
 
@@ -195,7 +264,9 @@ function bindCalculatorPage() {
       nome,
       custo: dados.custo,
       frete: dados.frete,
+      embalagem: dados.embalagem,
       taxaCartao: dados.taxaCartao,
+      taxaPlataforma: dados.taxaPlataforma,
       imposto: dados.imposto,
       margem: dados.margem,
       precoFinal: dados.precoFinal,

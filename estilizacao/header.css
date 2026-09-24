@@ -13,6 +13,8 @@
     background: var(--vermelho);
     border-radius:50%;
     opacity:0.15;
+    pointer-events:none;
+    z-index:0;
   }
   .eyebrow{
     font-size: 13px;
